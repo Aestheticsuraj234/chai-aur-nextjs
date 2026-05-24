@@ -16,7 +16,7 @@ export function getBaseUrl() {
 
 export async function fetchTodos(): Promise<Todo[]> {
   const res = await fetch(`${getBaseUrl()}/api/todos`, {
-    cache: "no-store",
+    cache: ,
   });
 
   if (!res.ok) {

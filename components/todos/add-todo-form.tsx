@@ -1,5 +1,6 @@
 "use client";
 
+import { createTodo } from "@/actions/todo";
 import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
 
@@ -17,13 +18,8 @@ export function AddTodoForm() {
     setIsSubmitting(true);
 
     try {
-      const res = await fetch("/api/todos", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ title: trimmed }),
-      });
-
-      if (res.ok) {
+      const todo = await createTodo(trimmed);
+      if (todo) {
         setTitle("");
         router.refresh();
       }
